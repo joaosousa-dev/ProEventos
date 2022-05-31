@@ -1,4 +1,4 @@
-### Features
+### Comandos uteis
 
 - npm install - instala todas dependencias node
 - ng serve -o
