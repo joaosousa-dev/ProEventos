@@ -11,7 +11,7 @@ namespace ProEventos.Persistence
     {
         private readonly ProEventosContext _context;
 
-        public EventosPersist(ProEventosContext context) : base(context)
+        public EventosPersist(ProEventosContext context):base(context)
         {
             _context = context;
         }
