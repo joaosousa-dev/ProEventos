@@ -59,12 +59,12 @@ namespace ProEventos.Application
         {
             try
             {
-                var evento = _eventoPersist.GetEventoByIdAsync(eventoId);
+                var evento = await _eventoPersist.GetEventoByIdAsync(eventoId);
 
                 if (evento == null)
                     throw new Exception($"Nenhum evento com id : {eventoId}");
 
-                _eventoPersist.Delete<Evento>();
+                _eventoPersist.Delete<Evento>(evento);
                 return await _eventoPersist.SaveChangesAsync();
             }
             catch (Exception ex)
