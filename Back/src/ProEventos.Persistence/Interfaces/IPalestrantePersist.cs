@@ -3,7 +3,7 @@ using ProEventos.Domain;
 
 namespace ProEventos.Persistence.Interfaces
 {
-    public interface IPalestrantePersist
+    public interface IPalestrantePersist : IGeralPersist
     {
 
         //PALESTRANTES

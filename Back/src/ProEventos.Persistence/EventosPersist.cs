@@ -7,11 +7,11 @@ using ProEventos.Persistence.Interfaces;
 
 namespace ProEventos.Persistence
 {
-    public class EventosPersist : IEventosPersist
+    public class EventosPersist : GeralPersist, IEventosPersist
     {
         private readonly ProEventosContext _context;
 
-        public EventosPersist(ProEventosContext context)
+        public EventosPersist(ProEventosContext context) : base(context)
         {
             _context = context;
         }

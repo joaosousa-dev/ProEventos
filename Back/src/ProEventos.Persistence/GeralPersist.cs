@@ -1,13 +1,10 @@
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using ProEventos.Domain;
 using ProEventos.Persistence.Context;
 using ProEventos.Persistence.Interfaces;
 
 namespace ProEventos.Persistence
 {
-    public class GeralPersist : IGeralPersist
+    public abstract class GeralPersist : IGeralPersist
     {
         private readonly ProEventosContext _context;
 
