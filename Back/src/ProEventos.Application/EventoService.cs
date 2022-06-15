@@ -37,15 +37,14 @@ namespace ProEventos.Application
             {
                 var evento = await _eventoPersist.GetEventoByIdAsync(eventoId);
 
-                if (evento == null)
-                    return null;
-
-                model.Id = evento.Id;
-
-                _eventoPersist.Update<Evento>(model);
-                if (await _eventoPersist.SaveChangesAsync())
+                if (evento != null)
                 {
-                    return await _eventoPersist.GetEventoByIdAsync(model.Id);
+                    model.Id = evento.Id;
+                    _eventoPersist.Update<Evento>(model);
+                    if (await _eventoPersist.SaveChangesAsync())
+                    {
+                        return await _eventoPersist.GetEventoByIdAsync(model.Id);
+                    }
                 }
                 return null;
             }
@@ -61,11 +60,13 @@ namespace ProEventos.Application
             {
                 var evento = await _eventoPersist.GetEventoByIdAsync(eventoId);
 
-                if (evento == null)
-                    throw new Exception($"Nenhum evento com id : {eventoId}");
+                if (evento != null)
+                {
+                    _eventoPersist.Delete<Evento>(evento);
+                    return await _eventoPersist.SaveChangesAsync();
+                }
 
-                _eventoPersist.Delete<Evento>(evento);
-                return await _eventoPersist.SaveChangesAsync();
+                return false;
             }
             catch (Exception ex)
             {

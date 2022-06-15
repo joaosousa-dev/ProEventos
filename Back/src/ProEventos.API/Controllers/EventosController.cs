@@ -69,5 +69,57 @@ namespace ProEventos.API.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
             }
         }
+
+        [HttpPost]
+        [Route("")]
+        public async Task<IActionResult> IncluiEvento(Evento evento)
+        {
+            try
+            {
+                var eventoIncluido = await _eventoService.AddEvento(evento);
+                if (eventoIncluido == null)
+                    return BadRequest("Erro ao tentar salvar evento");
+
+                return Ok($"Evento incluido com sucesso: {eventoIncluido}");
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao incluir eventos. Erro: {ex.Message}");
+            }
+        }
+        [HttpPut]
+        [Route("{eventoId:int}")]
+        public async Task<IActionResult> AtualizaEvento(int eventoId, Evento evento)
+        {
+            try
+            {
+                var eventoAtualizado = await _eventoService.UpdateEvento(eventoId, evento);
+                if (eventoAtualizado == null)
+                    return NotFound("Evento não encontrado");
+
+                return Ok($"Evento atualizado com sucesso: {eventoAtualizado}");
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao incluir eventos. Erro: {ex.Message}");
+            }
+        }
+        [HttpDelete]
+        [Route("{eventoId}")]
+        public async Task<IActionResult> ExcluiEvento(int eventoId)
+        {
+            try
+            {
+                var existeEvento = await _eventoService.DeleteEvento(eventoId);
+                if (!existeEvento)
+                    return NotFound("Evento não encontrado");
+
+                return Ok($"Evento excluido!");
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao excluir evento. Erro: {ex.Message}");
+            }
+        }
     }
 }
