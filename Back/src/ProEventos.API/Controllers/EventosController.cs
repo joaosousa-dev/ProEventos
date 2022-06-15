@@ -66,7 +66,7 @@ namespace ProEventos.API.Controllers
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuperar eventos por tema. Erro: {ex.Message}");
             }
         }
 
@@ -80,7 +80,7 @@ namespace ProEventos.API.Controllers
                 if (eventoIncluido == null)
                     return BadRequest("Erro ao tentar salvar evento");
 
-                return Ok($"Evento incluido com sucesso: {eventoIncluido}");
+                return Ok(eventoIncluido);
             }
             catch (Exception ex)
             {
@@ -101,7 +101,7 @@ namespace ProEventos.API.Controllers
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao incluir eventos. Erro: {ex.Message}");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao atualizar eventos. Erro: {ex.Message}");
             }
         }
         [HttpDelete]
