@@ -110,10 +110,8 @@ namespace ProEventos.API.Controllers
         {
             try
             {
-                var existeEvento = await _eventoService.DeleteEvento(eventoId);
-                if (!existeEvento)
+                if (!await _eventoService.DeleteEvento(eventoId))
                     return NotFound("Evento não encontrado");
-
                 return Ok($"Evento excluido!");
             }
             catch (Exception ex)
