@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProEventos.Persistence;
 using ProEventos.Persistence.Context;
 
 namespace ProEventos.Persistence.Migrations
@@ -184,11 +183,11 @@ namespace ProEventos.Persistence.Migrations
             modelBuilder.Entity("ProEventos.Domain.RedeSocial", b =>
                 {
                     b.HasOne("ProEventos.Domain.Evento", "Evento")
-                        .WithMany("RedeSociais")
+                        .WithMany("RedesSociais")
                         .HasForeignKey("EventoId");
 
                     b.HasOne("ProEventos.Domain.Palestrante", "Palestrante")
-                        .WithMany("RedeSociais")
+                        .WithMany("RedesSociais")
                         .HasForeignKey("PalestranteId");
 
                     b.Navigation("Evento");
@@ -202,14 +201,14 @@ namespace ProEventos.Persistence.Migrations
 
                     b.Navigation("PalestrantesEventos");
 
-                    b.Navigation("RedeSociais");
+                    b.Navigation("RedesSociais");
                 });
 
             modelBuilder.Entity("ProEventos.Domain.Palestrante", b =>
                 {
                     b.Navigation("PalestrantesEventos");
 
-                    b.Navigation("RedeSociais");
+                    b.Navigation("RedesSociais");
                 });
 #pragma warning restore 612, 618
         }

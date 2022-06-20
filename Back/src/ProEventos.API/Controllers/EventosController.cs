@@ -97,7 +97,7 @@ namespace ProEventos.API.Controllers
                 if (eventoAtualizado == null)
                     return NotFound("Evento não encontrado");
 
-                return Ok($"Evento atualizado com sucesso: {eventoAtualizado}");
+                return Ok(eventoAtualizado);
             }
             catch (Exception ex)
             {
