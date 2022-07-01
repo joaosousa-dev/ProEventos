@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { Evento } from '../models/Evento';
 import { EventoService } from '../services/evento.service';
 
@@ -10,7 +13,20 @@ import { EventoService } from '../services/evento.service';
 })
 export class EventosComponent implements OnInit {
 
-  constructor(private eventoService : EventoService) { }
+  constructor(
+    private eventoService : EventoService,
+    private modalService: BsModalService,
+    private toastr: ToastrService,
+    private spinner:NgxSpinnerService
+    ) { }
+  public ngOnInit(): void {
+    this.getEventos();
+  }
+
+  modalRef?: BsModalRef;
+  message?: string;
+
+
 
   public eventos : Evento[] = [];
   public eventosFiltrados : Evento[] = [];
@@ -24,7 +40,6 @@ export class EventosComponent implements OnInit {
     this.filtroListado = value;
     this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos
   }
-
   public filtrarEventos(filtrarPor:string):Evento[]{
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.eventos.filter(
@@ -32,19 +47,33 @@ export class EventosComponent implements OnInit {
       evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
-
-  public ngOnInit(): void {
-    this.getEventos();
-  }
-
   public getEventos() : any {
+    this.spinner.show();
     this.eventoService.getEventos().subscribe({
     next : (eventos : Evento[]) => {
       this.eventos = eventos;
       this.eventosFiltrados = this.eventos;
     },
-    error : (error:any) => console.error(error)
-  });
+    error : (error:any) => {
+      this.toastr.error(`Erro ao carregar eventos! Erro:${error.message}`,'Erro');
+      this.spinner.hide()
+    },
+    complete: () => this.spinner.hide()
+  })
+  }
+  openModal(template: TemplateRef<any>):void {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  confirm(): void {
+    this.message = 'Confirmed!';
+    this.modalRef?.hide();
+    this.toastr.success('Evento Deletado','Sucesso!')
+  }
+
+  decline(): void {
+    this.message = 'Declined!';
+    this.modalRef?.hide();
   }
 
 }
