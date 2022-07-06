@@ -505,4 +505,8 @@ Thumbs.db
 
 
 # Angular cache
-Front/ProEventos-App/.angular/cache
+*cache/*
+/.angular/cache/
+Front/ProEventos-App/.angular/cache/13.3.8/angular-webpack/b47aa9db3158478ae44d5852a21f37cc31d63208/0.pack
+Front/ProEventos-App/.angular/cache/13.3.8/angular-webpack/b47aa9db3158478ae44d5852a21f37cc31d63208/index.pack
+Front/ProEventos-App/.angular/cache/
