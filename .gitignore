@@ -502,3 +502,8 @@ Thumbs.db
 *.db
 *db-shm
 *.db-wal
+
+
+# Angular cache
+Front/ProEventos-App/.angular/cache
+Front/ProEventos-App/.angular/cache/13.3.8
