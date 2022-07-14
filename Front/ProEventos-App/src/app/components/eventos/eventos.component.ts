@@ -29,8 +29,8 @@ export class EventosComponent implements OnInit {
 
 
   public eventos : Evento[] = [];
-  public eventosFiltrados : Evento[] = [];
   exibeImagem = false;
+  public eventosFiltrados : Evento[] = [];
   private filtroListado : string = '';
 
   public get filtroLista():string{
