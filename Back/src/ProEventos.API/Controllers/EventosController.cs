@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProEventos.Application.Interfaces;
 using ProEventos.Domain;
+using ProEventos.Application.Dtos;
 using ProEventos.Persistence;
 using ProEventos.Persistence.Context;
 
@@ -72,7 +73,7 @@ namespace ProEventos.API.Controllers
 
         [HttpPost]
         [Route("")]
-        public async Task<IActionResult> IncluiEvento(Evento evento)
+        public async Task<IActionResult> IncluiEvento(EventoDto evento)
         {
             try
             {
@@ -89,7 +90,7 @@ namespace ProEventos.API.Controllers
         }
         [HttpPut]
         [Route("{eventoId:int}")]
-        public async Task<IActionResult> AtualizaEvento(int eventoId, Evento evento)
+        public async Task<IActionResult> AtualizaEvento(int eventoId, EventoDto evento)
         {
             try
             {
