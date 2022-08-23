@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">ProEventos</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="showMenu()">
+  <a class="navbar-brand" href="#"><i class="fa fa-users mb-2"></i></a>
   <button
     class="navbar-toggler"
     (click)="isCollapsed = !isCollapsed"
@@ -49,9 +49,9 @@
           class="dropdown-menu"
           aria-labelledby="navbarDropdownMenuLink"
         >
-          <a class="dropdown-item" routerLink="perfil">Editar</a>
+          <a class="dropdown-item" routerLink="user/perfil">Editar</a>
           <div role="separator" class="divider"></div>
-          <a class="dropdown-item" href="#">Sair</a>
+          <a class="dropdown-item" routerLink="/user/login">Sair</a>
         </div>
       </li>
     </ul>
