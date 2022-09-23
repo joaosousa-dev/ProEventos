@@ -113,7 +113,7 @@ namespace ProEventos.API.Controllers
             {
                 if (!await _eventoService.DeleteEvento(eventoId))
                     return NoContent();
-                return Ok($"Evento excluido!");
+                return Ok(new { message = $"Deletado" });
             }
             catch (Exception ex)
             {

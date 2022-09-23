@@ -20,6 +20,11 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
     this.validation()
   }
+  onsubmit():void{
+    if (this.form.invalid)
+      return;
+  }
+
 
   private validation():void{
     const formOptions : AbstractControlOptions={
@@ -37,6 +42,10 @@ export class PerfilComponent implements OnInit {
       titulo:['',[Validators.required,Validators.min(1),Validators.max(8)]]
 
     },formOptions)
+  }
+  public resetForm(event:any):void{
+    event.preventDefault();
+    this.form.reset();
   }
 
 }

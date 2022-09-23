@@ -18,7 +18,7 @@ namespace ProEventos.Application.Dtos
         [Range(1, 50000, ErrorMessage = "{0} precisa ser entre 1 e 50000")]
         public int QtdPessoas { get; set; }
         public string Lote { get; set; }
-        [RegularExpression(@"[^ \\ s]+(\\.(?i)(jpe?g|png|gif|bmp))$", ErrorMessage = "{0} Deve ser do tipo bmp,gif,jpeg,jpg ou png")]
+        //[RegularExpression(@"[^ \\ s]+(\\.(?i)(jpe?g | png | gif | bmp ))$", ErrorMessage = "{0} Deve ser do tipo bmp,gif,jpeg,jpg ou png")]
         public string ImagemURL { get; set; }
         [Required(ErrorMessage = "{0} é obrigatório"),
         Phone(ErrorMessage = "{0} está inválido")]
